@@ -20,10 +20,11 @@ $(document).ready(function(){
 		// tworzenie elementów składowych kolumny
 			var $column = $('<div>').addClass('column');
 			var $columnTitle = $('<h2>').addClass('column-title').text(self.name);
+	        var $columnBtns = $('<div>').addClass('column-btns');
 			var $columnCardList = $('<ul>').addClass('column-card-list');
-			var $columnDelete = $('<button>').addClass('btn-delete').text('x');
 			var $columnAddCard = $('<button>').addClass('add-card').text('Dodaj kartę');
-		// podpinanie odpowiednich zdarzeń
+			var $columnDelete = $('<button>').addClass('btn-delete-column').text('Usuń kolumnę');
+			// podpinanie odpowiednich zdarzeń
 			$columnDelete.click(function(){
 				self.removeColumn();
 			});
@@ -32,9 +33,10 @@ $(document).ready(function(){
 			});
 		// konstruowanie elementu kolumny
 			$column.append($columnTitle)
-				.append($columnDelete)
-				.append($columnAddCard)
-				.append($columnCardList);
+			$column.append($columnBtns)
+			$columnBtns.append($columnAddCard)
+			$columnBtns.append($columnDelete)
+			$column.append($columnCardList);
 		// zwracanie stworzonej listy
 			return $column;
 		}	
@@ -57,7 +59,7 @@ $(document).ready(function(){
 		// tworzenie elemntów składowych karty
 			var $card = $('<li>').addClass('card');
 			var $cardDescription = $('<p>').addClass('card-description').text(self.description);
-			var $cardDelete = $('<button>').addClass('btn-delete').text('x');
+			var $cardDelete = $('<button>').addClass('btn-delete-card').text('x');
 
 		// podpinanie odpowiednich zdarzeń
 			$cardDelete.click(function() {
@@ -73,7 +75,7 @@ $(document).ready(function(){
 			removeCard: function() {
 				this.$element.remove();
 			}
-		}
+		};
 	}
 	var board = {
 		name: 'Tablica Kanban',
@@ -114,4 +116,3 @@ $(document).ready(function(){
 	doingColumn.addCard(card2);
 	doneColumn.addCard(card3);
 });
-console.log();
